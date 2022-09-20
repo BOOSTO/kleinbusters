@@ -3,6 +3,10 @@ AddCSLuaFile("shared.lua")
 
 include("shared.lua")
 
+-- Include other scripts
+AddCSLuaFile("round_controller/cl_round_controller.lua")
+Include("round_controller/sv_round_controller.lua")
+
 function GM:PlayerConnect(name, ip)
 
     print("Player "..name.." connected with IP ("..ip..")")
