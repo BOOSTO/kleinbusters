@@ -4,7 +4,7 @@ KB__END = 2
 
 local round_status = KB__IDLE
 
-util.AddNetworkString("UpdateRoundStatus")
+util.AddNetworkString("set_round_status")
 
 function beginRound()
 
@@ -28,7 +28,7 @@ end
 
 function updateClientRoundStatus()
 
-    net.Start("UpdateRoundStatus")
+    net.Start("set_round_status")
         net.WriteInt(round_status, 4)
     net.Broadcast()
 

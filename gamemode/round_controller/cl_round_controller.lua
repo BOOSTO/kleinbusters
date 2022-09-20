@@ -4,7 +4,7 @@ KB__END = 2
 
 local round_status = KB__IDLE
 
-net.Receive("UpdateRoundStatus", function(len)
+net.Receive("set_round_status", function(len)
 
     round_status = net.ReadInt(4)
     print("-- round_status: "..round_status)
