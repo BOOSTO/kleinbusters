@@ -11,6 +11,6 @@ end
 
 function GM:PlayerInitialSpawn(ply)
 
-    print("Player "..ply.name.."has spawned.")
+    print("Player "..ply:Name().."has spawned.")
 
 end

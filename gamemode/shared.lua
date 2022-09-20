@@ -2,6 +2,6 @@ GM.Name = "Klein-Busters"
 
 function GM:Initialize()
 
-    self.baseclass.Initialize(self)
+    self.BaseClass.Initialize(self)
 
 end
