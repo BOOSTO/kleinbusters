@@ -8,9 +8,10 @@ function enterLobby()
 
 end
 
-net.Receive("ready_up", function()
+net.Receive("ready_up", function(len, ply)
 
     beginRound()
+    ply:GiveLoadout()
 
 end)
 
