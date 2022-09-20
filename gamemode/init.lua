@@ -13,6 +13,10 @@ local startWeapons = {
     "weapon_pistol",
     "weapon_smg1"
 }
+local startAmmo = {
+    Pistol = 54,
+    SMG1 = 135
+}
 local ply = FindMetaTable("Player")
 
 function ply:GiveLoadout()
@@ -21,7 +25,12 @@ function ply:GiveLoadout()
     self:SetModel("models/player/kleiner.mdl")
     for k, weapon in pairs(startWeapons) do
         
-        self:Give(weapon)
+        self:Give(weapon, true)
+
+    end
+    for ammo, amnt in pairs(startAmmo) do
+        
+        self:GiveAmmo(amnt, ammo, true)
 
     end
 
