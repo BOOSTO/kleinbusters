@@ -104,6 +104,9 @@ team.SetUp(KB_TEAM_BUSTER, teams[KB_TEAM_BUSTER].name, teams[KB_TEAM_BUSTER].col
 
 function ply:SetupTeam(n)
 
+    self:StripWeapons()
+    self:StripAmmo()
+
     if (not teams[n]) then return end
 
     self:SetPlayerColor(teams[n].color)
