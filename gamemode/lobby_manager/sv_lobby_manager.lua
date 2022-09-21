@@ -11,8 +11,8 @@ end
 net.Receive("ready_up", function(len, ply)
 
     if ( IsValid( ply ) and ply:IsPlayer() ) then
-        ply:SetupTeam(KB_TEAM_KLEINER)
-        beginRound()
+        ply:SetupTeam(math.random(0, 2))
+        timer.Simple( 5, beginRound)
     else
         print("Ready up fail.")
     end
