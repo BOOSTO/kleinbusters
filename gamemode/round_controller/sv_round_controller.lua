@@ -33,3 +33,32 @@ function updateClientRoundStatus()
     net.Broadcast()
 
 end
+
+hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, attacker )
+   
+    if (round_status == KB_START) then
+
+        if (victim:Team() == KB_TEAM_KLEINER) then
+            
+        endRound()
+
+        elseif (victim:Team() == KB_TEAM_DEFENDER) then
+            
+            victim:SetTeam(KB_TEAM_BUSTER)
+
+        end
+
+    elseif (round_status == KB_END) then
+
+        print("this dude double dead")
+        victim:SetTeam(TEAM_SPECTATOR)
+
+    end
+
+end )
+
+hook.Add( "PlayerSpawn", "GiveLoadout", function( ply )
+
+    ply:SetupTeam(ply:Team())
+
+end)
