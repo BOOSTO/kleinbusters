@@ -23,7 +23,8 @@ teams[KB_TEAM_KLEINER] = {
             }
         }
     },
-    health = 150
+    health = 150,
+    message = "Dr. Kleiner, the Kleinbusters are after you!"
 }
 teams[KB_TEAM_DEFENDER] = {
     name = "Anti-Kleinbusters",
@@ -57,7 +58,8 @@ teams[KB_TEAM_DEFENDER] = {
             }
         }
     },
-    health = 100
+    health = 100,
+    message = "Protect Dr. Kleiner at all costs!"
 }
 teams[KB_TEAM_BUSTER] = {
     name = "Kleinbusters",
@@ -95,8 +97,17 @@ teams[KB_TEAM_BUSTER] = {
             }
         }
     },
-    health = 125
+    health = 125,
+    message = "Kill Dr. Kleiner at all costs!"
 }
+
+function getTeamMessage(n)
+
+    if (not teams[n]) then return "no team message." end
+
+    return teams[n].message
+
+end
 
 team.SetUp(KB_TEAM_KLEINER, teams[KB_TEAM_KLEINER].name, teams[KB_TEAM_KLEINER].color)
 team.SetUp(KB_TEAM_DEFENDER, teams[KB_TEAM_DEFENDER].name, teams[KB_TEAM_DEFENDER].color)
