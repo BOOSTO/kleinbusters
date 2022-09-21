@@ -40,6 +40,7 @@ hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, atta
 
         if (victim:Team() == KB_TEAM_KLEINER) then
             
+        victim:SetTeam(TEAM_SPECTATOR)
         endRound()
 
         elseif (victim:Team() == KB_TEAM_DEFENDER) then
@@ -50,7 +51,6 @@ hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, atta
 
     elseif (round_status == KB_END) then
 
-        print("this dude double dead")
         victim:SetTeam(TEAM_SPECTATOR)
 
     end
