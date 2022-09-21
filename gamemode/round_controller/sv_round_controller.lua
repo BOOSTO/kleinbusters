@@ -1,21 +1,21 @@
-KB__IDLE = 0
-KB__START = 1
-KB__END = 2
+KB_IDLE = 0
+KB_START = 1
+KB_END = 2
 
-local round_status = KB__IDLE
+local round_status = KB_IDLE
 
 util.AddNetworkString("set_round_status")
 
 function beginRound()
 
-    round_status = KB__START
+    round_status = KB_START
     updateClientRoundStatus()
 
 end
 
 function endRound()
 
-    round_status = KB__END
+    round_status = KB_END
     updateClientRoundStatus()
 
 end

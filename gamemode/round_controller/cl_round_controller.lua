@@ -1,8 +1,8 @@
-KB__IDLE = 0
-KB__START = 1
-KB__END = 2
+KB_IDLE = 0
+KB_START = 1
+KB_END = 2
 
-local round_status = KB__IDLE
+local round_status = KB_IDLE
 
 net.Receive("set_round_status", function(len)
 

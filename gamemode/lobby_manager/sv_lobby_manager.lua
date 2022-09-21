@@ -10,8 +10,12 @@ end
 
 net.Receive("ready_up", function(len, ply)
 
-    beginRound()
-    ply:GiveLoadout()
+    if ( IsValid( ply ) and ply:IsPlayer() ) then
+        ply:SetupTeam(math.random(0, 2))
+        beginRound()
+    else
+        print("Ready up fail.")
+    end
 
 end)
 
