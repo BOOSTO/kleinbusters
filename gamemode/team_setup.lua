@@ -10,9 +10,17 @@ teams[KB_TEAM_KLEINER] = {
     model = "models/player/kleiner.mdl",
     weapons = {
         {
+            name = "weapon_fists",
+            ammo = {}
+        },
+        {
             name = "weapon_357",
-            ammo = "357",
-            amnt = 18
+            ammo = {
+                {
+                    name = "357",
+                    amnt = 18
+                }
+            }
         }
     },
     health = 150
@@ -23,14 +31,30 @@ teams[KB_TEAM_DEFENDER] = {
     model = "models/player/barney.mdl",
     weapons = {
         {
+            name = "weapon_fists",
+            ammo = {}
+        },
+        {
             name = "weapon_pistol",
-            ammo = "Pistol",
-            amnt = 54
+            ammo = {
+                {
+                    name = "Pistol",
+                    amnt = 54
+                }
+            }
         },
         {
             name = "weapon_smg1",
-            ammo = "SMG1",
-            amnt = 135
+            ammo = {
+                {
+                    name = "SMG1",
+                    amnt = 135
+                },
+                {
+                    name = "SMG1_Grenade",
+                    amnt = 3
+                }
+            }
         }
     },
     health = 100
@@ -41,14 +65,34 @@ teams[KB_TEAM_BUSTER] = {
     model = "models/player/combine_super_soldier.mdl",
     weapons = {
         {
+            name = "weapon_fists",
+            ammo = {}
+        },
+        {
+            name = "weapon_stunstick",
+            ammo = {}
+        },
+        {
             name = "weapon_pistol",
-            ammo = "Pistol",
-            amnt = 72
+            ammo = {
+                {
+                    name = "Pistol",
+                    amnt = 72
+                }
+            }
         },
         {
             name = "weapon_ar2",
-            ammo = "AR2",
-            amnt = 210
+            ammo = {
+                {
+                    name = "AR2",
+                    amnt = 210
+                },
+                {
+                    name = "AR2AltFire",
+                    amnt = 3
+                }
+            }
         }
     },
     health = 125
@@ -70,10 +114,15 @@ function ply:SetupTeam(n)
     self:SetRunSpeed(250)
     self:SetTeam(n)
 
-    for k, weapon in pairs(teams[n].weapons) do
+    for _, weapon in pairs(teams[n].weapons) do
         
         self:Give(weapon.name, true)
-        self:GiveAmmo(weapon.amnt, weapon.ammo, true)
+
+        for  _, ammo in pairs(weapon.ammo) do
+
+            self:GiveAmmo(ammo.amnt, ammo.name, true)
+
+        end
 
     end
 
