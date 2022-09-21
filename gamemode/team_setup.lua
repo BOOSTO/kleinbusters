@@ -64,6 +64,7 @@ function ply:SetupTeam(n)
 
     self:SetPlayerColor(teams[n].color)
     self:SetModel(teams[n].model)
+    self:SetupHands()
     self:SetHealth(teams[n].health)
     self:SetWalkSpeed(150)
     self:SetRunSpeed(250)
