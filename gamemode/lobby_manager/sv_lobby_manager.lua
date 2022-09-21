@@ -19,4 +19,4 @@ net.Receive("ready_up", function(len, ply)
 
 end)
 
-hook.Add("PlayerInitialSpawn", "open_player_lobby", enterLobby)
+hook.Add("PlayerSpawn", "open_player_lobby", enterLobby)
