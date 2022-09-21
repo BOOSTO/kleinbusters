@@ -5,6 +5,7 @@ KB_END = 2
 local round_status = KB_IDLE
 
 util.AddNetworkString("set_round_status")
+util.AddNetworkString("display_team_message")
 
 function beginRound()
 
@@ -60,5 +61,7 @@ end )
 hook.Add( "PlayerSpawn", "GiveLoadout", function( ply )
 
     ply:SetupTeam(ply:Team())
+    net.Start("display_team_message")
+    net.Broadcast()
 
 end)
