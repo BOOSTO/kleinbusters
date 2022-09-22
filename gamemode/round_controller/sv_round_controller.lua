@@ -5,7 +5,6 @@ KB_END = 2
 local round_status = KB_IDLE
 
 util.AddNetworkString("set_round_status")
-util.AddNetworkString("display_team_message")
 
 function beginRound()
 
@@ -37,31 +36,30 @@ end
 
 hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, attacker )
    
-    if (round_status == KB_START) then
+    -- if (round_status == KB_START) then
 
-        if (victim:Team() == KB_TEAM_KLEINER) then
+    --     if (victim:Team() == KB_TEAM_KLEINER) then
             
-        victim:SetTeam(TEAM_SPECTATOR)
-        endRound()
+    --     victim:SetTeam(TEAM_SPECTATOR)
+    --     endRound()
 
-        elseif (victim:Team() == KB_TEAM_DEFENDER) then
+    --     elseif (victim:Team() == KB_TEAM_DEFENDER) then
             
-            victim:SetTeam(KB_TEAM_BUSTER)
+    --         victim:SetTeam(KB_TEAM_BUSTER)
 
-        end
+    --     end
 
-    elseif (round_status == KB_END) then
+    -- elseif (round_status == KB_END) then
 
-        victim:SetTeam(TEAM_SPECTATOR)
+    --     victim:SetTeam(TEAM_SPECTATOR)
 
-    end
+    -- end
 
 end )
 
 hook.Add( "PlayerSpawn", "GiveLoadout", function( ply )
 
     ply:SetupTeam(ply:Team())
-    net.Start("display_team_message")
-    net.Broadcast()
+    ply:PrintMessage(HUD_PRINTCENTER, getTeamMessage(ply:Team()))
 
 end)
