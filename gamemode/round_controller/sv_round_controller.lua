@@ -36,24 +36,24 @@ end
 
 hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, attacker )
    
-    -- if (round_status == KB_START) then
+    if (round_status == KB_START) then
 
-    --     if (victim:Team() == KB_TEAM_KLEINER) then
+        if (victim:Team() == KB_TEAM_KLEINER) then
             
-    --     victim:SetTeam(TEAM_SPECTATOR)
-    --     endRound()
+        victim:SetTeam(TEAM_SPECTATOR)
+        endRound()
 
-    --     elseif (victim:Team() == KB_TEAM_DEFENDER) then
+        elseif (victim:Team() == KB_TEAM_DEFENDER) then
             
-    --         victim:SetTeam(KB_TEAM_BUSTER)
+            victim:SetTeam(KB_TEAM_BUSTER)
 
-    --     end
+        end
 
-    -- elseif (round_status == KB_END) then
+    elseif (round_status == KB_END) then
 
-    --     victim:SetTeam(TEAM_SPECTATOR)
+        victim:SetTeam(TEAM_SPECTATOR)
 
-    -- end
+    end
 
 end )
 
