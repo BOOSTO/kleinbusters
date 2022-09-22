@@ -12,6 +12,10 @@ net.Receive("ready_up", function(len, ply)
 
     if ( IsValid( ply ) and ply:IsPlayer() ) then
         ply:SetupTeam(math.random(0, 2))
+        local m = ply:GetName().." has joined."
+        broadcastMessage(m)
+
+        -- TODO: check if enough players are ready then start the match.
         timer.Simple( 5, beginRound)
     else
         print("Ready up fail.")
