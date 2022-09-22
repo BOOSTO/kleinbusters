@@ -1,10 +1,10 @@
 util.AddNetworkString("open_lobby")
 util.AddNetworkString("ready_up")
 
-function enterLobby()
+function enterLobby(ply)
 
     net.Start("open_lobby")
-    net.Broadcast()
+    net.Send(ply)
 
 end
 

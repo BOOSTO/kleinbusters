@@ -134,13 +134,13 @@ function ply:SetupTeam(n)
 
     if (not teams[n]) then return end
 
+    self:SetTeam(n)
     self:SetPlayerColor(teams[n].color)
     self:SetModel(teams[n].model)
     self:SetupHands()
     self:SetHealth(teams[n].health)
     self:SetWalkSpeed(150)
     self:SetRunSpeed(250)
-    self:SetTeam(n)
 
     for _, weapon in pairs(teams[n].weapons) do
         
