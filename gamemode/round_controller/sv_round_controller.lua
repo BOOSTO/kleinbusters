@@ -6,10 +6,29 @@ local round_status = KB_IDLE
 
 util.AddNetworkString("set_round_status")
 
+function broadcastMessage(m)
+
+    local tm = (m == "TEAM_MESSAGE")
+
+    for _, p in pairs(player.GetAll()) do
+
+        if (tm) then
+
+            m = getTeamMessage(p:Team())
+
+        end
+        
+        p:PrintMessage(HUD_PRINTCENTER, m)
+
+    end
+
+end
+
 function beginRound()
 
     round_status = KB_START
     updateClientRoundStatus()
+    broadcastMessage("TEAM_MESSAGE")
 
 end
 
@@ -17,6 +36,7 @@ function endRound()
 
     round_status = KB_END
     updateClientRoundStatus()
+    broadcastMessage("Kleiner has died!")
 
 end
 
