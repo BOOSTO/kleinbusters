@@ -4,8 +4,10 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 -- Include other scripts
-AddCSLuaFile("team_setup.lua")
-include("team_setup.lua")
+AddCSLuaFile("team_setup/common/team_setup.lua")
+include("team_setup/common/team_setup.lua")
+AddCSLuaFile("team_setup/cl_team_setup.lua")
+include("team_setup/sv_team_setup.lua")
 AddCSLuaFile("round_controller/cl_round_controller.lua")
 include("round_controller/sv_round_controller.lua")
 AddCSLuaFile("lobby_manager/cl_lobby_manager.lua")
