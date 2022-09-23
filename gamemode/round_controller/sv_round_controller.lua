@@ -28,7 +28,6 @@ function beginRound()
 
     round_status = KB_START
     updateClientRoundStatus()
-    broadcastMessage("TEAM_MESSAGE")
 
 end
 
@@ -36,7 +35,6 @@ function endRound()
 
     round_status = KB_END
     updateClientRoundStatus()
-    broadcastMessage("Kleiner has died!")
 
 end
 
@@ -61,10 +59,18 @@ hook.Add( "PlayerDeath", "GlobalDeathMessage", function( victim, inflictor, atta
         if (victim:Team() == KB_TEAM_KLEINER) then
             
         victim:SetTeam(TEAM_SPECTATOR)
+        broadcastMessage("Kleinbusters win!")
         endRound()
+        timer.Simple(3, function()
+            broadcastMessage("Starting new game in 5 seconds...")
+        end)
+        timer.Simple(8, function()
+            game.LoadNextMap()
+        end)
 
         elseif (victim:Team() == KB_TEAM_DEFENDER) then
             
+            victim:PrintMessage(HUD_PRINTCENTER, "You died, and will respawn as a Kleinbuster.")
             victim:SetTeam(KB_TEAM_BUSTER)
 
         end
