@@ -29,7 +29,7 @@ teams[KB_TEAM_KLEINER] = {
 teams[KB_TEAM_DEFENDER] = {
     name = "Anti-Kleinbusters",
     color = Color(0, 0, 255),
-    model = "models/player/barney.mdl",
+    model = "REBEL",
     weapons = {
         {
             name = "weapon_fists",
@@ -166,7 +166,11 @@ function ply:SetupTeam(n)
 
     self:SetTeam(n)
     self:SetPlayerColor(team.GetColor(n):ToVector())
-    self:SetModel(teams[n].model)
+    if (teams[n].model == "REBEL") then
+        self:SetModel("models/player/Group03/male_0"..math.random(1, 9)..".mdl")
+    else
+        self:SetModel(teams[n].model)
+    end
     self:SetupHands()
     self:SetHealth(teams[n].health)
     self:SetWalkSpeed(150)
