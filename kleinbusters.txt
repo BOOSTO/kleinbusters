@@ -1,6 +1,6 @@
 "kleinbusters" {
     "base" "base"
-    "title" "Klein-Busters"
+    "title" "Kleinbusters"
     "category" "pvp"
     "maps" "gm_boreas"
     "menusystem" "1"
