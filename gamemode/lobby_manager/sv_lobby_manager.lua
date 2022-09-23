@@ -1,10 +1,51 @@
 util.AddNetworkString("open_lobby")
 util.AddNetworkString("ready_up")
 
+local ready_players = {}
+
 function enterLobby(ply)
 
     net.Start("open_lobby")
     net.Send(ply)
+
+end
+
+function checkRoundStart()
+
+    local ready = true
+    for _, p in pairs(player.GetAll()) do
+
+        if not (ready_players[p:UserID()]) then 
+            ready = false
+            break
+        end
+
+    end
+    
+    if (ready) then
+
+        timer.Simple(3, function()
+        
+            broadcastMessage("Match starting in 5 seconds...")
+
+        end)
+        timer.Simple(8, function()
+
+            assignTeams()
+            broadcastMessage("TEAM_MESSAGE")
+            beginRound()
+
+        end)
+
+    else
+
+        timer.Simple(3, function()
+        
+            broadcastMessage("Waiting for more players...")
+
+        end)
+
+    end
 
 end
 
@@ -14,14 +55,13 @@ net.Receive("ready_up", function(len, ply)
         local m = ply:GetName().." has joined."
         broadcastMessage(m)
 
-        -- TODO: check if enough players are ready then start the match.
-        timer.Simple( 5, function()
-            ply:SetupTeam(math.random(1, 3))
-            broadcastMessage("TEAM_MESSAGE")
-            beginRound()
-        end)
+        ready_players[ply:UserID()] = true
+
+        checkRoundStart()
     else
+
         print("Ready up fail.")
+
     end
 
 end)

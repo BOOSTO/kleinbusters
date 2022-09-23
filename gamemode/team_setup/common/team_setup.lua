@@ -126,6 +126,36 @@ function getTeamMessage(n)
 
 end
 
+function shuffleTable(x)
+	for i = #x, 2, -1 do
+		local j = math.random(i)
+		x[i], x[j] = x[j], x[i]
+	end
+    return x
+end
+
+function assignTeams()
+
+    local i = 1
+    for _, p in pairs(shuffleTable(player.GetAll())) do
+
+        if (i == 1) then
+            p:SetupTeam(KB_TEAM_KLEINER)
+        elseif (i == 2) then
+            p:SetupTeam(KB_TEAM_BUSTER)
+        elseif (i == 2) then
+            p:SetupTeam(KB_TEAM_DEFENDER)
+        else
+            -- DEF = 2
+            -- BUS = 3
+            local tm = ( i + 1 ) % 2 + 2
+            p:SetupTeam(tm)
+        end
+
+    end
+
+end
+
 function ply:SetupTeam(n)
 
     self:StripWeapons()
