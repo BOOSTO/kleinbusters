@@ -11,7 +11,7 @@ end
 net.Receive("ready_up", function(len, ply)
 
     if ( IsValid( ply ) and ply:IsPlayer() ) then
-        ply:SetupTeam(math.random(0, 2))
+        ply:SetupTeam(math.random(1, 3))
         local m = ply:GetName().." has joined."
         broadcastMessage(m)
 

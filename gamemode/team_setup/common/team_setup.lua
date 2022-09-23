@@ -1,12 +1,12 @@
-KB_TEAM_KLEINER = 0
-KB_TEAM_DEFENDER = 1
-KB_TEAM_BUSTER = 2
+KB_TEAM_KLEINER = 1
+KB_TEAM_DEFENDER = 2
+KB_TEAM_BUSTER = 3
 
 local ply = FindMetaTable("Player")
 local teams = {}
 teams[KB_TEAM_KLEINER] = {
     name = "Kleiner",
-    color = Vector(1, 1, 1),
+    color = Color(255, 255, 255),
     model = "models/player/kleiner.mdl",
     weapons = {
         {
@@ -28,7 +28,7 @@ teams[KB_TEAM_KLEINER] = {
 }
 teams[KB_TEAM_DEFENDER] = {
     name = "Anti-Kleinbusters",
-    color = Vector(1, 1, 1),
+    color = Color(0, 0, 255),
     model = "models/player/barney.mdl",
     weapons = {
         {
@@ -63,7 +63,7 @@ teams[KB_TEAM_DEFENDER] = {
 }
 teams[KB_TEAM_BUSTER] = {
     name = "Kleinbusters",
-    color = Vector(1, 0, 0),
+    color = Color(255, 0, 0),
     model = "models/player/combine_super_soldier.mdl",
     weapons = {
         {
@@ -135,7 +135,7 @@ function ply:SetupTeam(n)
     if (not teams[n]) then return end
 
     self:SetTeam(n)
-    self:SetPlayerColor(teams[n].color)
+    self:SetPlayerColor(team.GetColor(n):ToVector())
     self:SetModel(teams[n].model)
     self:SetupHands()
     self:SetHealth(teams[n].health)
@@ -153,5 +153,17 @@ function ply:SetupTeam(n)
         end
 
     end
+
+end
+
+-- Set up teams
+for _, v in pairs({
+    KB_TEAM_KLEINER,
+    KB_TEAM_DEFENDER,
+    KB_TEAM_BUSTER
+}) do
+    
+    local tm = getTeam(v)
+    team.SetUp(v, tm.name, tm.color)
 
 end
