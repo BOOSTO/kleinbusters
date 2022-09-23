@@ -141,6 +141,7 @@ function ply:SetupTeam(n)
     self:SetHealth(teams[n].health)
     self:SetWalkSpeed(150)
     self:SetRunSpeed(250)
+    self:ShouldDropWeapon(true)
 
     for _, weapon in pairs(teams[n].weapons) do
         
