@@ -152,6 +152,8 @@ function assignTeams()
             p:SetupTeam(tm)
         end
 
+        i = i + 1
+
     end
 
 end
