@@ -158,6 +158,20 @@ function assignTeams()
 
 end
 
+function getTeamMems(team_id)
+
+    plys = {}
+    for _, ply in pairs(player.GetAll()) do
+        
+        if ( ply:Team() == team_id )
+        plys[#plys+1] = ply
+
+    end
+
+    return plys
+
+end
+
 function ply:SetupTeam(n)
 
     self:StripWeapons()
