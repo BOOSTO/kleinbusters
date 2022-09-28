@@ -17,50 +17,52 @@ local pro_kleiners = {
 
 function configureNPCRelations(npc)
 
-        if (npc:IsNPC()) then
+    if (npc:IsNPC()) then
+
+        print("config npc")
+        
+        if (anti_kleiners[npc:Classify()] != nil) then
             
-            if (anti_kleiners[v:Classify()] != nil) then
+            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
                 
-                for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
-                    
-                    npc:AddEntityRelationship(p, D_HT, 99)
+                npc:AddEntityRelationship(p, D_HT, 99)
 
-                end
-                for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                    
-                    npc:AddEntityRelationship(p, D_LI, 99)
-
-                end
-
-            elseif (kleiner_ally[v:Classify()] != nil) then
+            end
+            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
                 
-                for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
-                    
-                    npc:AddEntityRelationship(p, D_LI, 99)
+                npc:AddEntityRelationship(p, D_LI, 99)
 
-                end
-                for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                    
-                    npc:AddEntityRelationship(p, D_HT, 99)
+            end
 
-                end
-
-            elseif (pro_kleiners[v:Classify()] != nil) then
+        elseif (kleiner_ally[npc:Classify()] != nil) then
+            
+            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
                 
-                for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
-                    
-                    npc:AddEntityRelationship(p, D_LI, 99)
+                npc:AddEntityRelationship(p, D_LI, 99)
 
-                end
-                for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                    
-                    npc:AddEntityRelationship(p, D_FR, 99)
+            end
+            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
+                
+                npc:AddEntityRelationship(p, D_HT, 99)
 
-                end
+            end
+
+        elseif (pro_kleiners[npc:Classify()] != nil) then
+            
+            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER) + getTeamMems(KB_TEAM_DEFENDER)) do
+                
+                npc:AddEntityRelationship(p, D_LI, 99)
+
+            end
+            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
+                
+                npc:AddEntityRelationship(p, D_FR, 99)
 
             end
 
         end
+
+    end
 
 end
 
