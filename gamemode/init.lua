@@ -14,6 +14,12 @@ AddCSLuaFile("lobby_manager/cl_lobby_manager.lua")
 include("lobby_manager/sv_lobby_manager.lua")
 include("npc_utils.lua")
 
+if ( game.GetMap() == "gm_boreas" ) then
+    
+    include("map_classes/boreas.lua")
+
+end
+
 function GM:PlayerConnect(name, ip)
 
     print("Player "..name.." connected with IP ("..ip..")")
