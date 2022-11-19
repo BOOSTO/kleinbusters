@@ -173,6 +173,42 @@ function getTeamMems(team_id)
 
 end
 
+function playersRadialDistribute(plys, pos, rot)
+    squad_size = #plys
+    angle = 360.0 / squad_size
+    radius = 100.0
+    for i=0,squad_size-1 do
+        
+        npc_angle = angle * i
+        x = math.sin(math.rad(npc_angle))
+        y = math.cos(math.rad(npc_angle))
+        z = 10.0
+        direction = Vector(x, y, z)
+        offset = direction * Vector(radius, radius, 1)
+
+        print("spawning player[", tostring(i), "]: ", offset, ", ", rot)
+        
+        ply = plys[i+1]
+        ply:SetPos(pos + offset)
+        ply:SetEyeAngles(rot)
+
+    end
+end
+
+function teamsToSpawns(k_spawn, d_spawn, b_spawn)
+
+    plys = getTeamMems(KB_TEAM_KLEINER)
+    if (#plys != 0) then
+        plys[1]:SetPos(k_spawn[1])
+        plys[1]:SetEyeAngles(k_spawn[2])
+    end
+    plys = getTeamMems(KB_TEAM_DEFENDER)
+    playersRadialDistribute(plys, d_spawn[1], d_spawn[2])
+    plys = getTeamMems(KB_TEAM_BUSTER)
+    playersRadialDistribute(plys, b_spawn[1], b_spawn[2])
+
+end
+
 function ply:SetupTeam(n)
 
     self:StripWeapons()

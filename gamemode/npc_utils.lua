@@ -15,6 +15,17 @@ local pro_kleiners = {
     [CLASS_CITIZEN_PASSIVE] = true
 }
 
+local combine_squad = {
+    {"npc_combine_s", "models/combine_soldier.mdl", "weapon_ar2"},
+    {"npc_combine_s", "models/combine_soldier.mdl", "weapon_ar2"},
+    {"npc_combine_s", "models/combine_soldier.mdl", "weapon_smg1"},
+    {"npc_combine_s", "models/combine_soldier.mdl", "weapon_smg1"},
+    {"npc_combine_s", "models/combine_soldier.mdl", "weapon_smg1"},
+    {"npc_combine_s", "models/combine_soldier_prisonguard.mdl", "weapon_shotgun"},
+    {"npc_combine_s", "models/combine_soldier_prisonguard.mdl", "weapon_shotgun"},
+    {"npc_combine_s", "models/combine_super_soldier.mdl", "weapon_ar2"}
+}
+
 function configureNPCRelations(npc)
 
     if (npc:IsNPC()) then
@@ -108,26 +119,50 @@ function spawnNPC(npc_type, wpn, pos, rot)
 
 end
 
+function spawnCombine(npc_type, mdl, wpn, pos, rot)
+
+    e = ents.Create(npc_type)
+    e:SetModel(mdl)
+    if (wpn) then e:Give(wpn) end
+    e:SetPos(pos)
+	e:SetAngles(rot)
+    e:Spawn()
+    e:Activate()
+    e:DropToFloor()
+
+end
+
 function spawnCombineSquad(position, rotation)
 
     squad_size = math.random(4, 8)
     angle = 360.0 / squad_size
     radius = 100.0
+
+    npc_list = shuffleTable(combine_squad)
+
     for i=0,squad_size-1 do
         
         npc_angle = angle * i
         x = math.sin(math.rad(npc_angle))
         y = math.cos(math.rad(npc_angle))
-        z = 40.0
+        z = 60.0
         direction = Vector(x, y, z)
         offset = direction * Vector(radius, radius, 1)
 
+        local vStart = position + offset
+		local vForward = Vector(0, 0, -1)
+
+		tr = util.TraceLine( {
+			start = vStart,
+			endpos = vStart + ( vForward * 2048 ),
+			filter = ply
+		} )
+
         npc_rotation = offset:GetNormalized()
         npc_rotation = Angle(npc_rotation.x, npc_rotation.y, 0)
-
-        print("spawning squad[", tostring(i), "]: ", offset, ", ", npc_rotation)
         
-        spawnNPC("npc_combine_s", "weapon_smg1", position + offset, npc_rotation)
+        this_combine = npc_list[i+1]
+        spawnCombine(this_combine[1], this_combine[2], this_combine[3], tr.HitPos + tr.HitNormal * 32, npc_rotation)
 
     end
 
