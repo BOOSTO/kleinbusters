@@ -134,7 +134,7 @@ end
 
 function spawnCombineSquad(position, rotation)
 
-    squad_size = math.random(4, 8)
+    squad_size = math.random(3, 5)
     angle = 360.0 / squad_size
     radius = 100.0
 
@@ -162,7 +162,7 @@ function spawnCombineSquad(position, rotation)
         npc_rotation = Angle(npc_rotation.x, npc_rotation.y, 0)
         
         this_combine = npc_list[i+1]
-        spawnCombine(this_combine[1], this_combine[2], this_combine[3], tr.HitPos + tr.HitNormal * 32, npc_rotation)
+        spawnCombine(this_combine[1], this_combine[2], this_combine[3], tr.HitPos + tr.HitNormal * 64, npc_rotation)
 
     end
 
