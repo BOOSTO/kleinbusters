@@ -18,10 +18,6 @@ local pro_kleiners = {
 function configureNPCRelations(npc)
 
     if (npc:IsNPC()) then
-
-        print("config npc")
-        print("NPC CLASSIFICATION: ", npc:Classify())
-        print(anti_kleiners[npc:Classify()])
         
         if (anti_kleiners[npc:Classify()] ~= nil) then
 
@@ -104,7 +100,7 @@ end
 function spawnNPC(npc_type, wpn, pos, rot)
 
     e = ents.Create(npc_type)
-    e:Give(wpn)
+    if (wpn) then e:Give(wpn) end
     e:SetPos(pos)
 	e:SetAngles(rot)
     e:Spawn()
@@ -114,7 +110,26 @@ end
 
 function spawnCombineSquad(position, rotation)
 
-    squad_size = 
+    squad_size = math.random(4, 8)
+    angle = 360.0 / squad_size
+    radius = 100.0
+    for i=0,squad_size-1 do
+        
+        npc_angle = angle * i
+        x = math.sin(math.rad(npc_angle))
+        y = math.cos(math.rad(npc_angle))
+        z = 40.0
+        direction = Vector(x, y, z)
+        offset = direction * Vector(radius, radius, 1)
+
+        npc_rotation = offset:GetNormalized()
+        npc_rotation = Angle(npc_rotation.x, npc_rotation.y, 0)
+
+        print("spawning squad[", tostring(i), "]: ", offset, ", ", npc_rotation)
+        
+        spawnNPC("npc_combine_s", "weapon_smg1", position + offset, npc_rotation)
+
+    end
 
 end
 

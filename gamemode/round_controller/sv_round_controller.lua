@@ -28,7 +28,7 @@ function beginRound()
 
     round_status = KB_START
     updateClientRoundStatus()
-    debugSpawns()
+    mapInitialize()
 
 end
 

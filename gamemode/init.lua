@@ -18,6 +18,10 @@ if ( game.GetMap() == "gm_boreas" ) then
     
     include("map_classes/boreas.lua")
 
+elseif  ( game.GetMap() == "gm_city17_trainstation" ) then
+    
+    include("map_classes/city17_trainstation.lua")
+
 end
 
 function GM:PlayerConnect(name, ip)
