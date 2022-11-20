@@ -36,6 +36,36 @@ local squad_table = {
         {"npc_metropolice", "weapon_pistol"},
         {"npc_metropolice", "weapon_smg1"},
         {"npc_metropolice", "weapon_smg1"}
+    },
+	["combine"] = {
+        {"npc_combine_s", "weapon_ar2"},
+    	{"npc_combine_s", "weapon_smg1"},
+    	{"npc_combine_s", "weapon_smg1"},
+    	{"npc_combine_s", "weapon_smg1"},
+    	{"npc_combine_s", "weapon_smg1"},
+    	{"CombinePrison", "weapon_shotgun"},
+    	{"CombinePrison", "weapon_shotgun"},
+    	{"CombineElite", "weapon_ar2"}
+    },
+	["rebel"] = {
+        {"Medic", "weapon_smg1"},
+    	{"Rebel", "weapon_smg1"},
+    	{"Rebel", "weapon_smg1"},
+    	{"Rebel", "weapon_smg1"},
+    	{"Rebel", "weapon_pistol"},
+    	{"Rebel", "weapon_pistol"},
+    	{"Refugee", "weapon_pistol"},
+    	{"Refugee", "weapon_pistol"}
+    },
+	["civilian"] = {
+        {"npc_citizen", "weapon_smg1"},
+    	{"npc_citizen", nil},
+    	{"npc_citizen", nil},
+    	{"npc_citizen", nil},
+    	{"npc_citizen", nil},
+    	{"Refugee", nil},
+    	{"Refugee", nil},
+    	{"Refugee", nil}
     }
 }
 

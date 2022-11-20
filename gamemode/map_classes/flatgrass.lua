@@ -1,10 +1,10 @@
 map_data = {}
 
 map_data.npc_squads = {
-    { "metrocop", Vector(-420.0, 830.0, -12220.0), Angle(0, -60, 0.000) },
-    -- { "combine", Vector(), Angle() },
-    -- { "rebel", Vector(), Angle() },
-    -- { "civilian", Vector(), Angle() }
+    { "metrocop", Vector(-420, 830, -12220), Angle() },
+    { "combine", Vector(670, 630, -12220), Angle() },
+    { "rebel", Vector(-690, -220, -12700), Angle() },
+    { "civilian", Vector(-690, 220, -12700), Angle() }
 }
 
 map_data.npcs = {
