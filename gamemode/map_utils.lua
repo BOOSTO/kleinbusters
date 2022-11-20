@@ -13,6 +13,11 @@ function map_utils.spawnNPCs()
     end
 end
 
+function map_utils.spawnPlayers()
+    teamsToSpawns(map_data.spawns[KB_TEAM_KLEINER], map_data.spawns[KB_TEAM_DEFENDER], map_data.spawns[KB_TEAM_BUSTER])
+end
+
 function map_utils.createMapEntities()
+    map_utils.spawnPlayers()
     map_utils.spawnNPCs()
 end

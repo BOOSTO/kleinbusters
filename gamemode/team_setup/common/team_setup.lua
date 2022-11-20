@@ -174,7 +174,7 @@ function playersRadialDistribute(plys, pos, rot)
         npc_angle = angle * i
         x = math.sin(math.rad(npc_angle))
         y = math.cos(math.rad(npc_angle))
-        z = 10.0
+        z = 0
         direction = Vector(x, y, z)
         offset = direction * Vector(radius, radius, 1)
 
@@ -183,6 +183,7 @@ function playersRadialDistribute(plys, pos, rot)
         ply = plys[i+1]
         ply:SetPos(pos + offset)
         ply:SetEyeAngles(rot)
+        ply:DropToFloor()
 
     end
 end
