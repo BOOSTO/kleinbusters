@@ -51,6 +51,9 @@ function GM:PlayerInitialSpawn(ply)
 
 end
 
+hook.Add( "PlayerButtonUp", "simfphys_fixnumpads", function(ply, btn) numpad.Deactivate( ply, btn ) end)
+hook.Add( "PlayerButtonDown", "simfphys_fixnumpads", function(ply, btn) numpad.Activate( ply, btn ) end)
+
 hook.Add( "GetFallDamage", "CSSFallDamage", function( ply, speed )
 
 	return math.max( 0, math.ceil( 0.2418 * speed - 141.75 ) )

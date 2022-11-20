@@ -17,7 +17,16 @@ function map_utils.spawnPlayers()
     teamsToSpawns(map_data.spawns[KB_TEAM_KLEINER], map_data.spawns[KB_TEAM_DEFENDER], map_data.spawns[KB_TEAM_BUSTER])
 end
 
+function map_utils.spawnVehicles()
+    for _, v in pairs(map_data.vehicles) do
+        local e = simfphys.SpawnVehicleSimple( v[1], v[2], v[3] )
+        e:DropToFloor()
+        e:Activate()
+    end
+end
+
 function map_utils.createMapEntities()
     map_utils.spawnPlayers()
     map_utils.spawnNPCs()
+    map_utils.spawnVehicles()
 end

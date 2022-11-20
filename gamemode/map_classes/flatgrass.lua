@@ -33,3 +33,7 @@ map_data.npcs = {
         Angle()
     }
 }
+
+map_data.vehicles = {
+    { "sim_fphys_pwhatchback", Vector(660, -710, -12220), Angle(0, 135, 0) }
+}
