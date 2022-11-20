@@ -126,14 +126,6 @@ function getTeamMessage(n)
 
 end
 
-function shuffleTable(x)
-	for i = #x, 2, -1 do
-		local j = math.random(i)
-		x[i], x[j] = x[j], x[i]
-	end
-    return x
-end
-
 function assignTeams()
 
     local i = 1

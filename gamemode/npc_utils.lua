@@ -8,7 +8,7 @@ local anti_kleiners = {
 }
 
 local kleiner_ally = {
-    [CLASS_CITIZEN_REBEL] = true
+    [CLASS_PLAYER_ALLY] = true
 }
 
 local pro_kleiners = {
@@ -84,31 +84,31 @@ function configurePlayerNPCRelations(ply)
             elseif (anti_kleiners[npc:Classify()] ~= nil) then
 
                 if (ply:Team() == KB_TEAM_KLEINER) then
-                    npc:AddEntityRelationship(ply, D_HT, 99)
+                    npc:AddEntityRelationship(ply, D_HT, 1)
                 elseif (ply:Team() == KB_TEAM_DEFENDER) then
-                    npc:AddEntityRelationship(ply, D_HT, 99)
+                    npc:AddEntityRelationship(ply, D_HT, 1)
                 elseif (ply:Team() == KB_TEAM_BUSTER) then
-                    npc:AddEntityRelationship(ply, D_LI, 99)
+                    npc:AddEntityRelationship(ply, D_LI, 1)
                 end
     
             elseif (kleiner_ally[npc:Classify()] ~= nil) then
     
                 if (ply:Team() == KB_TEAM_KLEINER) then
-                    npc:AddEntityRelationship(ply, D_LI, 99)
+                    npc:AddEntityRelationship(ply, D_LI, 1)
                 elseif (ply:Team() == KB_TEAM_DEFENDER) then
-                    npc:AddEntityRelationship(ply, D_LI, 99)
+                    npc:AddEntityRelationship(ply, D_LI, 1)
                 elseif (ply:Team() == KB_TEAM_BUSTER) then
-                    npc:AddEntityRelationship(ply, D_HT, 99)
+                    npc:AddEntityRelationship(ply, D_HT, 1)
                 end
     
             elseif (pro_kleiners[npc:Classify()] ~= nil) then
                 
                 if (ply:Team() == KB_TEAM_KLEINER) then
-                    npc:AddEntityRelationship(ply, D_LI, 99)
+                    npc:AddEntityRelationship(ply, D_LI, 1)
                 elseif (ply:Team() == KB_TEAM_DEFENDER) then
-                    npc:AddEntityRelationship(ply, D_LI, 99)
+                    npc:AddEntityRelationship(ply, D_LI, 1)
                 elseif (ply:Team() == KB_TEAM_BUSTER) then
-                    npc:AddEntityRelationship(ply, D_FR, 99)
+                    npc:AddEntityRelationship(ply, D_FR, 1)
                 end
     
             end
@@ -303,7 +303,7 @@ function Spawn_Squad(sqd_class, position, rotation)
     angle = 360.0 / squad_size
     radius = 100.0
 
-    local npc_list = squad_table[sqd_class]
+    local npc_list = shuffleTable(squad_table[sqd_class])
 
     for i=0,squad_size-1 do
         

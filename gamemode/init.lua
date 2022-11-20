@@ -30,6 +30,14 @@ elseif ( game.GetMap() == "gm_flatgrass" ) then
 
 end
 
+function shuffleTable(x)
+	for i = #x, 2, -1 do
+		local j = math.random(i)
+		x[i], x[j] = x[j], x[i]
+	end
+    return x
+end
+
 function GM:PlayerConnect(name, ip)
 
     print("Player "..name.." connected with IP ("..ip..")")

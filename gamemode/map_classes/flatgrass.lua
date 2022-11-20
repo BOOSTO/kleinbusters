@@ -13,5 +13,17 @@ map_data.npcs = {
         "weapon_pistol",
         Vector(140.0, 880.0, -12220.0),
         Angle(0.000, -90.0, 0.000)
+    },
+    {
+        "npc_strider",
+        nil,
+        Vector(-700, 170, -12220),
+        Angle()
+    },
+    {
+        "npc_helicopter",
+        nil,
+        Vector(-700, -460, -12220),
+        Angle()
     }
 }
