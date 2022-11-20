@@ -26,81 +26,49 @@ local combine_squad = {
     {"npc_combine_s", "models/combine_super_soldier.mdl", "weapon_ar2"}
 }
 
-function configureNPCRelations(npc)
-
-    if (npc:IsNPC()) then
-        
-        if (anti_kleiners[npc:Classify()] ~= nil) then
-
-            print("config anti_kleiner")
-            
-            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER)) do
-                
-                npc:AddEntityRelationship(p, D_HT, 99)
-
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_DEFENDER)) do
-                
-                npc:AddEntityRelationship(p, D_HT, 99)
-
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                
-                npc:AddEntityRelationship(p, D_LI, 99)
-
-            end
-
-        elseif (kleiner_ally[npc:Classify()] ~= nil) then
-
-            print("config kleiner_ally")
-            
-            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER)) do
-                
-                npc:AddEntityRelationship(p, D_LI, 99)
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_DEFENDER)) do
-                
-                npc:AddEntityRelationship(p, D_LI, 99)
-
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                
-                npc:AddEntityRelationship(p, D_HT, 99)
-
-            end
-
-        elseif (pro_kleiners[npc:Classify()] ~= nil) then
-            
-            print("config pro_kleiner")
-
-            for _, p in pairs(getTeamMems(KB_TEAM_KLEINER)) do
-                
-                npc:AddEntityRelationship(p, D_LI, 99)
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_DEFENDER)) do
-                
-                npc:AddEntityRelationship(p, D_LI, 99)
-
-            end
-            for _, p in pairs(getTeamMems(KB_TEAM_BUSTER)) do
-                
-                npc:AddEntityRelationship(p, D_FR, 99)
-
-            end
-
-        end
-
-    end
-
-end
-
-function configureAllNPCRelations()
+function configurePlayerNPCRelations(ply)
 
     for _, e in pairs(ents.GetAll()) do
         
         if (e:IsNPC()) then
-            
-            configureNPCRelations(e)
+
+            local npc = e
+
+            if (ply:Team() == TEAM_SPECTATOR) then
+
+                npc:AddEntityRelationship(ply, D_NU, 99)
+
+            elseif (anti_kleiners[npc:Classify()] ~= nil) then
+
+                if (ply:Team() == KB_TEAM_KLEINER) then
+                    npc:AddEntityRelationship(ply, D_HT, 99)
+                elseif (ply:Team() == KB_TEAM_DEFENDER) then
+                    npc:AddEntityRelationship(ply, D_HT, 99)
+                elseif (ply:Team() == KB_TEAM_BUSTER) then
+                    npc:AddEntityRelationship(ply, D_LI, 99)
+                end
+    
+            elseif (kleiner_ally[npc:Classify()] ~= nil) then
+    
+                if (ply:Team() == KB_TEAM_KLEINER) then
+                    npc:AddEntityRelationship(ply, D_LI, 99)
+                elseif (ply:Team() == KB_TEAM_DEFENDER) then
+                    npc:AddEntityRelationship(ply, D_LI, 99)
+                elseif (ply:Team() == KB_TEAM_BUSTER) then
+                    npc:AddEntityRelationship(ply, D_HT, 99)
+                end
+    
+            elseif (pro_kleiners[npc:Classify()] ~= nil) then
+                
+                if (ply:Team() == KB_TEAM_KLEINER) then
+                    npc:AddEntityRelationship(ply, D_LI, 99)
+                elseif (ply:Team() == KB_TEAM_DEFENDER) then
+                    npc:AddEntityRelationship(ply, D_LI, 99)
+                elseif (ply:Team() == KB_TEAM_BUSTER) then
+                    npc:AddEntityRelationship(ply, D_FR, 99)
+                end
+    
+            end
 
         end
 
@@ -108,9 +76,19 @@ function configureAllNPCRelations()
 
 end
 
+function configureNPCRelations(npc)
+
+    for _, ply in pairs(player.GetAll()) do
+        
+        configurePlayerNPCRelations(ply)
+
+    end
+    
+end
+
 function spawnNPC(npc_type, wpn, pos, rot)
 
-    e = ents.Create(npc_type)
+    local e = ents.Create(npc_type)
     if (wpn) then e:Give(wpn) end
     e:SetPos(pos)
 	e:SetAngles(rot)
@@ -121,7 +99,7 @@ end
 
 function spawnCombine(npc_type, mdl, wpn, pos, rot)
 
-    e = ents.Create(npc_type)
+    local e = ents.Create(npc_type)
     e:SetModel(mdl)
     if (wpn) then e:Give(wpn) end
     e:SetPos(pos)
@@ -169,3 +147,5 @@ function spawnCombineSquad(position, rotation)
 end
 
 hook.Add ( "OnEntityCreated", "AddCustomRelationships", configureNPCRelations)
+
+hook.Add( "PlayerSpawn", "ConfigNPCRelations", configurePlayerNPCRelations)
