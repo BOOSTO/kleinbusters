@@ -297,7 +297,7 @@ end
 
 function Spawn_Squad(sqd_class, position, rotation)
 
-    squad_size = math.random(3, 5)
+    squad_size = math.random(2, 5)
     angle = 360.0 / squad_size
     radius = 100.0
 
