@@ -88,5 +88,6 @@ hook.Add( "PlayerSpawn", "GiveLoadout", function( ply )
 
     ply:SetupTeam(ply:Team())
     ply:PrintMessage(HUD_PRINTCENTER, getTeamMessage(ply:Team()))
+    configureAllNPCRelations()
 
 end)

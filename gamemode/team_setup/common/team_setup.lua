@@ -211,13 +211,14 @@ end
 
 function ply:SetupTeam(n)
 
+    self:SetTeam(n)
     self:StripWeapons()
     self:StripAmmo()
     self:SetPlayerColor(Vector(0, 0, 0))
+    configurePlayerNPCRelations(self)
 
     if (not teams[n]) then return end
 
-    self:SetTeam(n)
     self:SetPlayerColor(team.GetColor(n):ToVector())
     if (teams[n].model == "REBEL") then
         self:SetModel("models/player/Group03/male_0"..math.random(1, 9)..".mdl")
@@ -232,7 +233,7 @@ function ply:SetupTeam(n)
 
     for _, weapon in pairs(teams[n].weapons) do
         
-        self:Give(weapon.name, true)
+        self:Give(weapon.name, false)
 
         for  _, ammo in pairs(weapon.ammo) do
 
