@@ -28,7 +28,7 @@ function beginRound()
 
     round_status = KB_START
     updateClientRoundStatus()
-    mapInitialize()
+    map_utils.createMapEntities()
 
 end
 

@@ -13,6 +13,7 @@ include("round_controller/sv_round_controller.lua")
 AddCSLuaFile("lobby_manager/cl_lobby_manager.lua")
 include("lobby_manager/sv_lobby_manager.lua")
 include("npc_utils.lua")
+include("map_utils.lua")
 
 if ( game.GetMap() == "gm_boreas" ) then
     
@@ -21,6 +22,11 @@ if ( game.GetMap() == "gm_boreas" ) then
 elseif  ( game.GetMap() == "gm_city17_trainstation" ) then
     
     include("map_classes/city17_trainstation.lua")
+
+
+elseif ( game.GetMap() == "gm_flatgrass" ) then
+
+    include("map_classes/flatgrass.lua")
 
 end
 
