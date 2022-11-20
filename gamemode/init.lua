@@ -14,6 +14,7 @@ AddCSLuaFile("lobby_manager/cl_lobby_manager.lua")
 include("lobby_manager/sv_lobby_manager.lua")
 include("npc_utils.lua")
 include("map_utils.lua")
+include("items.lua")
 
 if ( game.GetMap() == "gm_boreas" ) then
     
@@ -37,6 +38,14 @@ function shuffleTable(x)
 	end
     return x
 end
+
+function shallowCopy(t)
+    local t2 = {}
+    for k,v in pairs(t) do
+      t2[k] = v
+    end
+    return t2
+  end
 
 function GM:PlayerConnect(name, ip)
 

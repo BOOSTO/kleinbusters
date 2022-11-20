@@ -25,8 +25,28 @@ function map_utils.spawnVehicles()
     end
 end
 
+function map_utils.spawnItems()
+    local default_item = items.item_list[1]
+    local item_list = shuffleTable(shallowCopy(items.item_list))
+
+    PrintTable(item_list)
+
+    local idx = 1
+    for _, spawnpoint in pairs(map_data.item_spawns) do
+        if ( item_list[idx] ) then
+            print("spawn item")
+            items.spawnItem(item_list[idx], spawnpoint)
+            idx = idx + 1
+        else
+            print("spawn default")
+            items.spawnItem(default_item, spawnpoint)
+        end
+    end
+end
+
 function map_utils.createMapEntities()
     map_utils.spawnPlayers()
     map_utils.spawnNPCs()
     map_utils.spawnVehicles()
+    map_utils.spawnItems()
 end
