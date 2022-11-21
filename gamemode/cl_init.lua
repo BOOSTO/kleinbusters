@@ -14,21 +14,21 @@ concommand.Add( "kb_npc", function()
         "   \"npc_metropolice\",\n" ..
         "   \"weapon_pistol\",\n" ..
         "   Vector(" .. pos.x .. "," .. pos.y .. "," .. pos.z .. "),\n" ..
-        "   Angle(" .. rot.x .. "," .. rot.y .. "," .. rot.z .. ")\n" ..
-        "}\n"
+        "   Angle( 0 ," .. rot.y .. ", 0 )\n" ..
+        "}"
     )
-end, nil, "respawn map entities" )
+end, nil, "print some nice code" )
 
 concommand.Add( "kb_squad", function()
     local pos = LocalPlayer():EyePos()
     local rot = LocalPlayer():EyeAngles()
     print("{ \"metrocop\", " .. 
         "Vector(" .. pos.x .. "," .. pos.y .. "," .. pos.z .. "), " ..
-        "Angle(" .. rot.x .. "," .. rot.y .. "," .. rot.z .. ") }\n"
+        "Angle( 0 ," .. rot.y .. ", 0 ) }"
     )
-end, nil, "respawn map entities" )
+end, nil, "print some nice code" )
 
 concommand.Add( "kb_item", function()
     local pos = LocalPlayer():EyePos()
-    print("Vector(" .. pos.x .. "," .. pos.y .. "," .. pos.z .. ")\n")
-end, nil, "respawn map entities" )
+    print("Vector(" .. pos.x .. "," .. pos.y .. "," .. pos.z .. ")")
+end, nil, "print some nice code" )
